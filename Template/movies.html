@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+
+    <tr>
+{% for i in sample %}
+        <td>
+            {{i.Movie_id}}
+        </td>
+
+        <td>
+            {{i.Movie_name}}
+        </td>
+
+        <td>
+            {{i.Year_of_release}}
+        </td>
+
+        <td>
+            {{i.Plot}}
+        </td>
+
+        <td>
+            {{i.Poster_image}}
+        </td>
+
+{% endfor %}
+    </tr>
+</table>
+</body>
+</html>

@@ -1,3 +1,6 @@
-from django.db import models
-
-# Create your models here.
+# from django.db import models
+#
+#
+# class Album(models,Model):
+#     artist=models.CharField(max_length=250)
+#     movie_title

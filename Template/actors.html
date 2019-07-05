@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+{% for i in sample_actors %}
+        <td>
+            {{i.Act_id}}
+        </td>
+
+        <td>
+            {{i.Actor_name}}
+        </td>
+
+        <td>
+            {{i.Sex}}
+        </td>
+
+        <td>
+            {{i.DOB}}
+        </td>
+
+        <td>
+            {{i.Actor_bio}}
+        </td>
+
+{% endfor %}
+    </tr>
+</table>
+</body>
+</html>
