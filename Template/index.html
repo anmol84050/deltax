@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="./content/styles/index.css">
+    <title>IMDb</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark row">
+        <a class="navbar-brand col-2" href="#"><img
+                src="https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"
+                alt="IMDb" class="logo-inverse" height="50px"></a>
+        <div class="col-7">
+            <nav class="nav nav-pills nav-justified" style="color: white">
+                <li class="nav-item nav-link btn-success">Movies</li>
+                <li class="nav-item nav-link">TV Shows</li>
+                <li class="nav-item nav-link">Celebrities</li>
+                <li class="nav-item nav-link">Watch List</li>
+            </nav>
+        </div>
+        <div class="col-3 row">
+            <input class="form-control col" type="search" placeholder="Search" aria-label="Search">
+            <div class="col">
+                <button class="btn btn-outline-success">Search</button>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid" style="padding-top: 2%">
+        <div class="container-fluid row">
+            <h1 class="col-10">Top movies bhosdike</h1>
+            <div class="col-2">
+                    <button class="btn btn-block btn-success" onclick="addMovie()"><i class="fa fa-plus"></i> Add movie</button>
+            </div>
+            <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Poster</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Release</th>
+                        <th scope="col">Plot</th>
+                        <th scope="col">Cast</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td data-dict="Poster"><img src="https://images-na.ssl-images-amazon.com/images/I/518vRgZPUNL._SY445_.jpg" width="100px" height="150px"></td>
+                        <td data-dict="Name">BodyGuard</td>
+                        <td data-dict="Year">2011</td>
+                        <td data-dict="Plot">Bodyguard is a Hindi action film, starring Salman Khan and Kareena Kapoor Khan in lead roles</td>
+                        <td data-dict="Cast">Salman Khan,Kareena Kapoor</td>
+                        <td class="row">
+                                <div class="col-6"><button class="btn" onclick="editMovie(event)"><i class="fa fa-edit"></i></button></div>
+                                <div class="col-6"><button class="btn" onclick="deleteMovie(event)"><i class="fa fa-trash"></i></button></div>
+                        </td>
+                      </tr>
+                      <tr>
+                            <th scope="row">2</th>
+                            <td data-dict="Poster"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Jab_Tak_Hai_Jaan_Poster.jpg/220px-Jab_Tak_Hai_Jaan_Poster.jpg" width="100px" height="150px"></td>
+                            <td data-dict="Name">Jab Tak hai Jaan</td>
+                            <td data-dict="Year">2012</td>
+                            <td data-dict="Plot">Samar is smitten by Meera in London. He returns to India after she leaves him and dedicates himself to the army. Akira falls in love with him but later decides to unite him with Meera.</td>
+                            <td data-dict="Cast">Shahrukh Khan,Katrina Kaif,Anushka</td>
+                            <td class="row">
+                                    <div class="col-6"><button class="btn" onclick="editMovie(event)"><i class="fa fa-edit"></i></button></div>
+                                    <div class="col-6"><button class="btn" onclick="deleteMovie(event)"><i class="fa fa-trash"></i></button></div>
+                            </td>
+                          </tr>
+                    </tbody>
+                  </table>
+        </div>
+    </div>
+    <div id="edit-movie-modal" class="modal fade" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit-movie-modal-header"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="edit-movie-form" class="modal-body container-fluid">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Name</label>
+                        <div class="col-sm-8">
+                            <input id="Name" type="text" class="form-control" placeholder="Name of the movie" onchange="IsValid(event.target)" name="Name" required>
+                            <small></small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Year released</label>
+                        <div class="col-sm-8">
+                            <select id="Year" type="select" class="form-control" name="Year" required>
+                                <option selected disabled value="">Choose release year</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                <option value="2012">2012</option>
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>
+                            </select>
+                            <small></small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Plot</label>
+                        <div class="col-sm-8">
+                            <textarea id="Plot" class="form-control" name="Plot" placeholder="Plot of the movie"
+                                rows="3" required></textarea>
+                            <small></small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Poster Image</label>
+                        <div class="col-sm-8">
+                            <input id="Poster" type="file" accept="image/*" class="form-control-file" name="Poster" required>
+                            <small>Dimensions: 100 x 150</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Cast</label>
+                        <div class="col-sm-8">
+                            <select id="Cast" multiple type="select" class="form-control" name="Year" required>
+                                <option disabled value="">Hold and select for multiple cast</option>
+                                <option value="Shahrukh Khan">Shahrukh Khan</option>
+                                <option value="Salman Khan">Salman Khan</option>
+                                <option value="Katrina Kaif">Katrina Kaif</option>
+                                <option value="Kareena Kapoor">Kareena Kapoor</option>
+                                <option value="Anushka">Anushka</option>
+                            </select>
+                            <small></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="edit-movie-btn" type="button" class="btn btn-success"></button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+      <div id="delete-movie-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Delete movie</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to delete this movie?</p>
+              <div class="row">
+                  <label class="col-4">Name: </label>
+                  <label class="col-8" id="deleting-movie-name"></label>
+              </div>
+              <div class="row">
+                    <label class="col-4">Release: </label>
+                    <label class="col-8" id="deleting-movie-year"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Delete</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <script src="./js/index.js"></script>
+</body>
+
+</html>

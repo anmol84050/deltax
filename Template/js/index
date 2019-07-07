@@ -1,0 +1,76 @@
+$(document).ready(()=>{
+    //AJAX here
+});
+
+let editMovie = (event) =>{
+    $("#edit-movie-modal-header").text('Edit movie');
+    $("#edit-movie-btn").text('Edit');
+    let parents =$(event.target).parentsUntil("tbody");
+    let tr = $(parents[parents.length-1]).children();
+    for(let target of tr){
+        if(target.hasAttribute("data-dict")){
+            if(target.getAttribute("data-dict")=="Cast"){
+                let x=target.innerText.split(",");
+                console.log(x);
+                $("#Cast").val(x);
+            }else{
+                $("#"+target.getAttribute("data-dict")).val(target.innerText);
+
+            }
+        }
+    }
+    $("#edit-movie-modal").modal('show');
+}
+
+let deleteMovie = (event) =>{
+    let parents =$(event.target).parentsUntil("tbody");
+    let tr = $(parents[parents.length-1]).children();
+    for(let target of tr){
+        if(target.hasAttribute("data-dict")){
+            if(target.getAttribute("data-dict")=="Name"){
+                $("#deleting-movie-name").text(target.innerText);
+            }
+            if(target.getAttribute("data-dict")=="Year"){
+                $("#deleting-movie-year").text(target.innerText);
+            }
+        }
+    }
+$("#delete-movie-modal").modal('show');
+}
+
+let addMovie = () =>{
+    $("#edit-movie-form :input").val('');
+    $("#edit-movie-modal-header").text('Add a new movie');
+    $("#edit-movie-btn").text('Add');
+    $("#edit-movie-modal").modal('show');
+}
+$("#edit-movie-btn").click(()=>{
+    console.log($("#Cast").val());
+    let flag = true;
+    for(let target of $("#edit-movie-form :input")){
+        if(!IsValid(target)){
+            flag = false;
+        }
+    }
+    if(flag){
+        $("#edit-movie-modal").modal('hide');
+        //AJAX here
+        alert("Add");
+    }
+});
+$("#delete-movie-btn").click(()=>{
+    //AJAX here
+});
+function IsValid(target){
+    console.log(target.value);
+    if (target.hasAttribute('required') && !target.value) {
+        $(target).next('small').text(target.name + " is mandatory");
+        target.style.borderColor = "red";
+        return false;
+    }
+    target.style.borderColor = "green";
+    if (target.nextElementSibling) {
+        $(target).next('small').text("");
+    }
+    return true;
+}
